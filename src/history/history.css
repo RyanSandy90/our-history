@@ -1,0 +1,375 @@
+/* Shared by Next.js and WordPress; keep styles scoped to this root. */
+.aquinas-history {
+  --history-red: #ef3e33;
+  --history-paper: #f7f7f6;
+  --history-ink: #121212;
+  --history-subject-size: 48px;
+  --history-action-width: 116px;
+  --history-action-height: 40px;
+  --history-action-font-size: 14px;
+  --history-continue-width: 180px;
+  --history-continue-height: 64px;
+  --history-continue-font-size: 16px;
+  --design-scale: 1;
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+  background: var(--history-ink);
+  color: var(--history-paper);
+  font-family: "Aquinas DM", "DM Sans", Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+  isolation: isolate;
+}
+.aquinas-history *, .aquinas-history *::before, .aquinas-history *::after { box-sizing: border-box; }
+.aquinas-history::selection, .aquinas-history *::selection { background: var(--history-red); color: var(--history-ink); text-shadow: none; }
+.aquinas-history h1, .aquinas-history h2, .aquinas-history p, .aquinas-history figure { margin: 0; }
+.aquinas-history button, .aquinas-history a { -webkit-tap-highlight-color: transparent; }
+.aquinas-history button { font: inherit; color: inherit; border-radius: 0; cursor: pointer; }
+.aquinas-history button:disabled { cursor: default; }
+/* Pointer decoration; native controls, touch and reduced motion keep their own cursor. */
+.aquinas-history .history-glass-cursor { position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: 0; transition: opacity .15s; }
+.aquinas-history .history-glass-cursor[data-visible="true"] { opacity: 1; }
+.aquinas-history .history-glass-filter { position: absolute; pointer-events: none; }
+.aquinas-history .history-glass-lens { position: absolute; top: 0; left: 0; width: var(--glass-size); height: var(--glass-size); will-change: transform; }
+.aquinas-history .history-glass-surface { width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 30% 18%, #fff2, transparent 46%), linear-gradient(145deg, #fff0 55%, #fff1); box-shadow: inset 0 1px 1px #ffffff8c, inset 1px 0 2px #ffffff38, inset 0 -1px 2px #ffffff4d, inset -2px -3px 8px #ffffff0a, 0 5px 20px #0002; backdrop-filter: blur(1.5px) saturate(1.25); -webkit-backdrop-filter: blur(1.5px) saturate(1.25); transition: transform .25s, box-shadow .25s; }
+.aquinas-history .history-glass-cursor[data-refraction="true"] .history-glass-surface { backdrop-filter: var(--glass-filter) saturate(1.15); }
+.aquinas-history .history-glass-cursor[data-interactive="true"] .history-glass-surface { transform: scale(.64); box-shadow: inset 0 1px 1px #ffffffb3, inset 1px 0 2px #ffffff4d, inset 0 -1px 2px #ffffff66, 0 3px 12px #0002; }
+.aquinas-history .history-glass-cursor[data-pressed="true"] .history-glass-surface { transform: scale(.54); }
+.aquinas-history .history-glass-point { position: absolute; top: 0; left: 0; width: 3px; height: 3px; border-radius: 50%; background: var(--history-paper); box-shadow: 0 0 1px #121212; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .aquinas-history[data-glass-cursor="true"], .aquinas-history[data-glass-cursor="true"] * { cursor: none; }
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .aquinas-history .history-glass-cursor { display: none; }
+}
+.aquinas-history button:focus-visible, .aquinas-history a:focus-visible, .aquinas-history [tabindex]:focus-visible { outline: 2px solid var(--history-paper); outline-offset: 5px; }
+.aquinas-history img { display: block; max-width: none; }
+/* Opening curtain and upright Ogg counter. */
+.aquinas-history .history-preloader { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; overflow: hidden; background: var(--history-ink); touch-action: none; }
+.aquinas-history .history-preloader-centre { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.aquinas-history .history-preloader-label { display: flex; gap: 16px; align-items: center; color: var(--history-paper); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.aquinas-history .history-preloader-label span { color: var(--history-red); }
+.aquinas-history .history-year-counter { display: flex; direction: ltr; gap: .015em; overflow: hidden; color: var(--history-red); font-family: "Aquinas Ogg", Georgia, serif; font-size: clamp(112px, 17.5vw, 240px); font-style: normal; font-weight: 500; line-height: 1.15; font-synthesis: none; mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent); }
+.aquinas-history .history-counter-column { position: relative; display: block; height: 1.15em; width: .68em; overflow: hidden; }
+.aquinas-history .history-counter-numeral { position: absolute; inset: 0; display: grid; place-items: center; }
+.aquinas-history .history-counter-static { display: block; height: 1.15em; letter-spacing: .015em; }
+.aquinas-history .history-preloader-range { display: flex; align-items: center; gap: 16px; color: #f7f7f699; font-size: 12px; letter-spacing: .08em; }
+.aquinas-history .history-preloader-range span { width: 64px; height: 1px; background: #ef3e3380; }
+/* Hero uses 1280 × 832 design coordinates, scaled by HistoryExperience. */
+.aquinas-history .history-hero-reveal { position: absolute; inset: 0; transform-origin: 50% 50svh; }
+.aquinas-history .history-design-stage { position: absolute; width: 1280px; height: 832px; top: 0; left: 50%; transform: translateX(-50%) scale(var(--design-scale)); transform-origin: 50% 0; }
+.aquinas-history .history-hero { position: relative; height: var(--history-viewport, 100svh); overflow: clip; background: var(--history-ink); }
+.aquinas-history .history-hero-zoom { position: absolute; inset: 0; }
+.aquinas-history .history-hero-stage { left: calc(640px * var(--design-scale)); top: calc(50svh - 416px * var(--design-scale)); }
+.aquinas-history .history-orbit { position: absolute; width: 1280px; height: 1108px; top: 0; left: 0; }
+.aquinas-history .history-orbit-connections { position: absolute; inset: 0; overflow: visible; pointer-events: none; stroke: var(--history-paper); stroke-opacity: .24; }
+.aquinas-history .history-orbit-card { position: absolute; top: 0; left: 0; padding: 0; border: 0; overflow: hidden; }
+.aquinas-history .history-orbit-year { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; color: var(--history-red); font-family: "Aquinas Ogg", Georgia, serif; font-style: normal; font-weight: 500; line-height: 1; letter-spacing: -.04em; pointer-events: none; opacity: 0; transform: translateY(5px) scale(.94); transition: opacity .45s cubic-bezier(.4, 0, .2, 1), transform .55s cubic-bezier(.4, 0, .2, 1); }
+.aquinas-history .history-orbit-card[data-particles="scattered"] .history-orbit-year { opacity: 1; transform: translateY(0) scale(1); transition-delay: .12s; }
+.aquinas-history .history-orbit-photo { position: relative; z-index: 1; display: block; width: 100%; height: 100%; background: var(--history-red); isolation: isolate; opacity: var(--particle-image-opacity, 1); }
+.aquinas-history .history-orbit-particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.aquinas-history .history-orbit-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); mix-blend-mode: multiply; }
+.aquinas-history .history-hero-content { position: absolute; top: 416px; left: 640px; transform: translate(-50%, -50%); width: 600px; display: flex; flex-direction: column; align-items: center; text-align: center; pointer-events: none; }
+.aquinas-history .history-hero-actions { pointer-events: auto; }
+.aquinas-history .history-crest { width: 98px; height: 98px; object-fit: contain; }
+.aquinas-history .history-hero h1 { color: var(--history-red); font-size: 84px; font-weight: 500; letter-spacing: .32px; line-height: 128px; }
+.aquinas-history .history-story-word { font-family: "Aquinas Ogg", Georgia, serif; font-style: normal; font-weight: 500; }
+.aquinas-history .history-hero-content p { font-size: 20px; line-height: 26px; max-width: 520px; text-wrap: balance; }
+.aquinas-history .history-focus-word { display: inline-block; }
+.aquinas-history .history-focus-line { display: block; text-wrap: balance; }
+.aquinas-history .history-hero-actions { display: flex; justify-content: center; margin-top: 48px; }
+.aquinas-history .history-button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 8px 16px; border: 1.5px solid var(--history-paper); background: transparent; font-size: 16px; line-height: 21px; text-decoration: none; transition: color .2s, background-color .2s; }
+.aquinas-history .history-button:hover { background: var(--history-paper); color: var(--history-ink); }
+@property --history-neon-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.aquinas-history .history-button-neon, .aquinas-history .history-hero-apology { white-space: nowrap; }
+.aquinas-history .history-button-neon { position: relative; isolation: isolate; width: var(--history-action-width); height: var(--history-action-height); border-width: 1px; font-size: var(--history-action-font-size); line-height: normal; box-shadow: 0 0 10px #ef3e3326, inset 0 0 8px #ef3e3310; transition: border-color .4s, background-color .4s, box-shadow .4s; }
+.aquinas-history .history-button-neon > span { position: relative; z-index: 1; }
+/* Follow the text-sized Figma button on desktop; mobile keeps the larger swipe-sized action. */
+.aquinas-history .history-start-journey { width: auto; height: auto; min-width: 0; min-height: 36px; padding: 8px 16px; border-color: var(--history-red); font-size: var(--history-action-font-size); line-height: 18px; font-variation-settings: "opsz" 14; }
+/* Two red light trails circle the Figma outline; the actual border remains a fallback. */
+.aquinas-history .history-button-neon::before { content: ""; position: absolute; inset: -1px; padding: 1px; pointer-events: none; background: conic-gradient(from var(--history-neon-angle), transparent 0deg, #ef3e3340 42deg, var(--history-red) 80deg, var(--history-paper) 94deg, transparent 108deg, transparent 180deg, #ef3e3340 222deg, var(--history-red) 260deg, var(--history-paper) 274deg, transparent 288deg); mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; }
+.aquinas-history .history-button-neon::after { content: ""; position: absolute; inset: -1px; border: 1px solid var(--history-red); opacity: .3; box-shadow: 0 0 5px var(--history-red), 0 0 16px #ef3e3359, inset 0 0 7px #ef3e3333; pointer-events: none; transition: opacity .4s; }
+.aquinas-history .history-button-neon:is(:hover, :focus-visible) { color: var(--history-paper); border-color: var(--history-red); background: #ef3e330d; box-shadow: 0 0 20px #ef3e3352, inset 0 0 12px #ef3e331a; }
+.aquinas-history .history-button-neon:is(:hover, :focus-visible)::after { opacity: .85; }
+.aquinas-history .history-hero-apology { position: absolute; z-index: 1; top: calc(100svh - 52px * var(--design-scale)); right: calc(48px * var(--design-scale)); transform: scale(var(--design-scale)); transform-origin: top right; width: 87px; height: 30px; min-height: 30px; padding: 6px 8px; border: 1px solid var(--history-red); background: #151515; color: var(--history-red); font-size: 10.5px; line-height: normal; }
+.aquinas-history .history-hero-apology::before { content: ""; position: absolute; inset: -7px 0; }
+.aquinas-history .history-hero-apology:hover { color: var(--history-paper); background: #ef3e331a; }
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .aquinas-history .history-button-neon[data-neon-ready="true"]::before { animation: history-button-neon 6.4s linear infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aquinas-history .history-button-neon, .aquinas-history .history-button-neon::after { transition: none; }
+}
+@media (forced-colors: active) {
+  .aquinas-history .history-button-neon::before, .aquinas-history .history-button-neon::after { display: none; }
+  .aquinas-history .history-button-neon, .aquinas-history .history-hero-apology { border-color: ButtonText; }
+}
+@keyframes history-button-neon { to { --history-neon-angle: 360deg; } }
+/* A reflective metal rim surrounds translucent glass. Keep the cue outside the hero zoom. */
+@property --history-metal-angle { syntax: "<angle>"; inherits: false; initial-value: 35deg; }
+.aquinas-history .history-scroll-continue { position: fixed; z-index: 4; bottom: max(20px, env(safe-area-inset-bottom)); left: 50%; width: max-content; height: auto; min-height: 40px; display: flex; align-items: center; justify-content: center; padding: 8px 16px; color: rgb(247 247 246 / .78); background: linear-gradient(180deg, #ffffff12, #ffffff00 48%, #ffffff08), #12121266; border: 1px solid #f7f7f64d; border-radius: 999px; box-shadow: inset 0 1px 2px #ffffff33, inset 0 -1px 2px #0006, 0 2px 4px #0004, 0 8px 24px #0003; backdrop-filter: blur(10px) saturate(1.25); -webkit-backdrop-filter: blur(10px) saturate(1.25); font-size: var(--history-continue-font-size); line-height: 21px; font-variation-settings: "opsz" 14; text-shadow: 0 1px 3px #0008; text-align: center; appearance: none; pointer-events: auto; transform: translateX(-50%); }
+.aquinas-history .history-scroll-continue::before {
+  content: ""; position: absolute; inset: -1px; padding: 1.5px; border-radius: inherit; pointer-events: none;
+  background: conic-gradient(from var(--history-metal-angle), #f7f7f680, #121212 12%, #f7f7f633 20%, var(--history-paper) 27%, #f7f7f64d 31%, #121212 40%, #ef3e334d 47%, #f7f7f6b3 55%, #121212 64%, #f7f7f633 74%, var(--history-paper) 81%, #f7f7f64d 85%, #121212 93%, #f7f7f680);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+}
+.aquinas-history .history-scroll-continue::after {
+  content: ""; position: absolute; inset: 1px; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(ellipse at 30% 0, #ffffff1a, transparent 58%), linear-gradient(110deg, transparent 28%, #ffffff00 40%, #ffffff12 48%, #ffffff00 56%, transparent 72%);
+  background-size: 100% 100%, 240% 100%; background-position: 0 0, 100% 0;
+}
+.aquinas-history .history-scroll-label { position: relative; z-index: 1; white-space: nowrap; }
+.aquinas-history .history-scroll-continue { opacity: 1; transition: opacity .28s ease-in-out, transform .35s ease-in-out; }
+.aquinas-history .history-scroll-continue[data-transitioning="true"] { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(6px); }
+@media (prefers-reduced-motion: reduce) {
+  .aquinas-history .history-scroll-continue { transition: none; }
+}
+.aquinas-history .history-scroll-mobile { display: none; }
+.aquinas-history .history-scroll-label > span { position: absolute; inset: 0; color: transparent; background-clip: text; -webkit-background-clip: text; }
+.aquinas-history .history-scroll-label > span { opacity: 0; background-image: linear-gradient(110deg, transparent 35%, #ffb6a480 44%, var(--history-paper) 50%, #ffb6a480 56%, transparent 65%); background-size: 300% 100%; background-position: 100% 0; }
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .aquinas-history .history-scroll-continue::before { animation: history-scroll-metal 12s linear infinite; }
+  .aquinas-history .history-scroll-continue::after { animation: history-scroll-glass 8s ease-in-out infinite alternate; }
+  .aquinas-history .history-scroll-continue:is([data-transitioning="true"], [data-readable="false"])::before,
+  .aquinas-history .history-scroll-continue:is([data-transitioning="true"], [data-readable="false"])::after { animation-play-state: paused; }
+  .aquinas-history .history-scroll-continue[data-phase="shimmer"] .history-scroll-label > span { animation: history-scroll-shimmer 1.8s ease-in-out both; }
+}
+@media (forced-colors: active) {
+  .aquinas-history .history-scroll-continue { color: CanvasText; background: Canvas; border-color: CanvasText; text-shadow: none; }
+  .aquinas-history .history-scroll-continue::before, .aquinas-history .history-scroll-continue::after { display: none; }
+}
+@keyframes history-scroll-metal { to { --history-metal-angle: 395deg; } }
+@keyframes history-scroll-glass { to { background-position: 0 0, 0 0; } }
+@keyframes history-scroll-shimmer { 0% { opacity: 0; background-position: 100% 0; } 15%, 85% { opacity: .9; } 100% { opacity: 0; background-position: 0 0; } }
+/* One continuous ribbon under the introduction, timeline and closing section. */
+.aquinas-history .history-chapters { position: relative; isolation: isolate; }
+.aquinas-history .history-ribbon-track { position: absolute; inset: 0; z-index: 0; pointer-events: none; mask-image: linear-gradient(to bottom, transparent, #000 180px); }
+.aquinas-history .history-ribbon-viewport { position: sticky; top: 0; height: 100svh; overflow: clip; }
+.aquinas-history .history-ribbon-surface { position: absolute; inset: 0; background: var(--history-ink); }
+.aquinas-history .history-ribbon-fallback { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; filter: blur(34px); }
+.aquinas-history .history-ribbon-fallback path { stroke: var(--history-red); stroke-width: 110px; opacity: .11; }
+.aquinas-history .history-ribbon-fallback path + path { stroke-width: 28px; opacity: .045; }
+.aquinas-history .history-ribbon-canvas { position: relative; display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .8s; }
+.aquinas-history [data-ribbon-state="ready"] .history-ribbon-canvas { opacity: 1; }
+.aquinas-history .history-intro-stage { position: absolute; top: 50%; left: 50%; width: 1280px; height: 832px; transform: translate(-50%, -50%) scale(var(--chapter-scale, 1)); transform-origin: center; }
+.aquinas-history .history-opening { position: relative; z-index: 1; }
+.aquinas-history .history-intro { position: relative; z-index: 1; }
+.aquinas-history .history-intro-panel { position: relative; height: var(--history-viewport, 100svh); overflow: clip; }
+.aquinas-history .history-intro p { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 882px; color: #fcfcfc; font-size: 48px; line-height: 62px; text-align: center; font-variation-settings: "opsz" 14; }
+.aquinas-history .history-intro-highlight { color: inherit; background: linear-gradient(var(--history-red), var(--history-red)) left 65% / var(--history-highlight, 100%) 86% no-repeat; border-radius: 2px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+/* Keep this query in step with PINNED_HISTORY_QUERY in scroll.ts. */
+@media (min-height: 500px) and (prefers-reduced-motion: no-preference) {
+  .aquinas-history .history-opening { height: var(--history-viewport, 100svh); overflow: clip; }
+  .aquinas-history .history-opening .history-hero { position: absolute; inset: 0; z-index: 2; }
+  .aquinas-history .history-intro { position: absolute; inset: 0; }
+  .aquinas-history .history-intro-panel { position: absolute; inset: 0; visibility: hidden; }
+}
+.aquinas-history .history-text-word { display: inline-block; }
+/* Shared timeline media, with portrait and interactive model variations below. */
+.aquinas-history .history-photo { position: absolute; width: 580px; }
+.aquinas-history .history-photo > img { width: 580px; height: 360px; object-fit: cover; filter: grayscale(1); }
+.aquinas-history .history-photo figcaption { display: table; max-width: 580px; margin-top: 8px; padding: 2px 16px; border: .5px solid var(--history-red); font-size: 10px; line-height: 13px; }
+.aquinas-history .history-timeline { --timeline-scale: 1; position: relative; z-index: 1; height: 100svh; min-height: 520px; background: transparent; overflow: clip; }
+.aquinas-history .history-timeline-stage { z-index: 1; width: 1280px; height: 832px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(var(--timeline-scale)); transform-origin: center; }
+.aquinas-history .history-year { position: absolute; top: 70px; left: 48px; width: 468px; height: 114px; color: var(--history-red); display: flex; align-items: center; font-family: "Aquinas Ogg", Georgia, serif; font-style: normal; font-weight: 500; font-size: 144px; line-height: 1; letter-spacing: calc(.03em - 4px); }
+.aquinas-history .history-year-range { font-size: 82px; letter-spacing: calc(.03em - 3px); }
+.aquinas-history .history-entry { position: absolute; left: 48px; top: 236px; width: 468px; }
+.aquinas-history .history-entry h2 { font-size: var(--history-subject-size); font-weight: 500; line-height: 1.3; letter-spacing: 0; text-wrap: pretty; }
+.aquinas-history .history-text-keep { white-space: nowrap; }
+.aquinas-history .history-entry-reading { position: relative; margin-top: 32px; }
+.aquinas-history .history-entry-copy { font-size: 16px; line-height: 21px; max-height: 352px; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; overscroll-behavior: contain; padding-right: 2px; }
+.aquinas-history .history-entry[data-text-reveal="running"] .history-entry-copy { overflow-y: hidden; }
+.aquinas-history .history-entry-copy::-webkit-scrollbar { display: none; }
+.aquinas-history .history-entry-copy:focus { outline: none; }
+/* Native overlay bars vary by OS; this indicator keeps the timeline's 1px weight. */
+.aquinas-history .history-copy-scrollbar { position: absolute; inset: 0 0 0 auto; width: 1px; pointer-events: none; opacity: 0; transition: opacity .2s; }
+.aquinas-history .history-entry[data-text-reveal="complete"] .history-entry-reading[data-overflow="true"] .history-copy-scrollbar { opacity: 1; }
+.aquinas-history .history-copy-scrollbar > span { display: block; width: 100%; height: var(--copy-thumb-height, 0px); transform: translateY(var(--copy-thumb-offset, 0px)); background: var(--history-paper); }
+.aquinas-history .history-entry-copy:focus-visible + .history-copy-scrollbar { box-shadow: 0 0 0 1px var(--history-red); }
+.aquinas-history .history-entry-copy p + p { margin-top: 21px; }
+.aquinas-history .history-date-rail { position: absolute; top: 66px; left: 551px; width: 112px; height: 686px; display: flex; flex-direction: column; z-index: 2; }
+.aquinas-history .history-date { flex: 0 0 14px; display: flex; align-items: center; position: relative; width: 112px; height: 14px; padding: 0; border: 0; background: transparent; text-align: left; font-size: 10px; line-height: 14px; gap: 10px; color: #c5c5c4; }
+.aquinas-history .history-date::after { content: ""; position: absolute; width: 9px; height: 1px; left: 0; bottom: 0; background: #f7f7f62e; }
+.aquinas-history .history-date-tick { display: block; width: 20px; height: 1px; background: #f7f7f657; transition: width .18s, background .18s; flex-shrink: 0; }
+.aquinas-history .history-date.is-current { color: var(--history-red); font-size: 11px; }
+.aquinas-history .history-date.is-current .history-date-tick { width: 38px; height: 2px; background: var(--history-red); }
+.aquinas-history .history-date:hover .history-date-tick { background: var(--history-paper); width: 30px; }
+.aquinas-history .history-date:hover { color: var(--history-paper); }
+.aquinas-history .history-date.is-current:hover { color: var(--history-red); }
+.aquinas-history .history-date.is-current:hover .history-date-tick { width: 38px; background: var(--history-red); }
+.aquinas-history .history-date-placeholder, .aquinas-history .history-date-placeholder:hover { color: #a1a19e; }
+.aquinas-history .history-date-placeholder:hover .history-date-tick { width: 20px; background: #f7f7f657; }
+.aquinas-history .history-date:focus-visible { outline-offset: 1px; z-index: 3; }
+.aquinas-history .history-timeline-photo { left: 654px; top: 174px; }
+.aquinas-history .history-photo-portrait { top: 144px; }
+.aquinas-history .history-photo-portrait > img { width: auto; max-width: 100%; height: 480px; margin-inline: auto; object-fit: contain; background: transparent; }
+.aquinas-history .history-photo-portrait figcaption { margin-inline: auto; text-align: center; }
+.aquinas-history .history-render3d-cross, .aquinas-history .history-render3d-nano { top: 99px; }
+.aquinas-history .history-render3d-building { top: 160px; }
+.aquinas-history .history-render3d figcaption { margin-inline: auto; text-align: center; color: #c5c5c4; }
+.aquinas-history .history-model-viewer { position: relative; width: 100%; height: 456px; background: transparent; user-select: none; }
+.aquinas-history .history-model-viewer:focus { outline: none; }
+.aquinas-history .history-model-viewer:focus-visible + figcaption { color: var(--history-paper); background: #ef3e331a; text-decoration: underline; text-underline-offset: 3px; }
+.aquinas-history .history-render3d-cross .history-model-viewer, .aquinas-history .history-render3d-nano .history-model-viewer { height: 580px; }
+.aquinas-history .history-model-viewer canvas, .aquinas-history .history-model-poster { position: absolute; inset: 0; width: 100%; height: 100%; }
+.aquinas-history .history-model-poster { object-fit: contain; pointer-events: none; }
+.aquinas-history .history-model-viewer canvas { display: block; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.aquinas-history .history-model-viewer[data-model-state="ready"] canvas { opacity: 1; }
+.aquinas-history .history-model-viewer[data-model-state="ready"][data-model-interactive="true"] { touch-action: none; }
+.aquinas-history .history-model-viewer[data-model-state="ready"][data-model-interactive="true"] canvas { pointer-events: auto; touch-action: none; }
+.aquinas-history .history-timeline-controls { position: absolute; left: 48px; right: 48px; bottom: 50px; display: flex; align-items: center; justify-content: space-between; color: #b8b8b5; font-size: 11px; }
+.aquinas-history .history-step-buttons { display: flex; align-items: center; gap: 18px; font-variant-numeric: tabular-nums; }
+.aquinas-history .history-step-buttons button { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; background: none; border: 1px solid #555; font-size: 18px; transition: border-color .2s, color .2s; }
+.aquinas-history .history-step-buttons button:hover:not(:disabled) { border-color: var(--history-red); color: var(--history-red); }
+.aquinas-history .history-step-buttons button:disabled { opacity: .3; }
+.aquinas-history .history-counter-divider { opacity: .5; margin: 0 4px; }
+/* Closing section and the optional secondary-site footer. */
+.aquinas-history .history-end { --footer-action-scale: calc(var(--design-scale) * .75); position: relative; z-index: 1; min-height: 363px; padding: 113px 24px; display: flex; flex-direction: column; align-items: center; gap: 24px; background: linear-gradient(to bottom, #12121200, var(--history-ink) 65%); text-align: center; }
+.aquinas-history .history-end h2 { width: min(calc(882px * var(--chapter-scale, 1)), 100%); color: var(--history-red); font-family: "Aquinas Ogg", Georgia, serif; font-size: calc(var(--history-subject-size) * var(--chapter-scale, 1)); font-style: normal; font-weight: 500; line-height: calc(73px * var(--chapter-scale, 1)); }
+.aquinas-history .history-end-actions { display: flex; align-items: center; justify-content: center; gap: 27px; }
+.aquinas-history .history-end .history-button { width: calc(var(--history-action-width) * var(--footer-action-scale)); height: calc(var(--history-action-height) * var(--footer-action-scale)); min-height: 0; padding: calc(8px * var(--footer-action-scale)) calc(16px * var(--footer-action-scale)); border-width: calc(1px * var(--footer-action-scale)); color: var(--history-paper); font-size: calc(var(--history-action-font-size) * var(--footer-action-scale)); line-height: normal; white-space: nowrap; }
+.aquinas-history .history-end .history-button:hover { color: var(--history-ink); }
+/* Standard secondary-page footer, scoped to the standalone history preview. */
+.aquinas-history .history-site-footer { position: relative; padding: clamp(4rem, 7vw, 6.5rem) 2rem clamp(3rem, 6vw, 5rem); background: var(--history-ink); color: #d6d2c4; font-weight: 400; }
+.aquinas-history .history-site-footer-inner { width: min(100%, 1680px); margin: 0 auto; }
+.aquinas-history .history-site-footer-brand { display: flex; justify-content: center; margin-bottom: clamp(3rem, 6vw, 5rem); }
+.aquinas-history .history-site-footer-brand a { display: inline-flex; justify-content: center; }
+.aquinas-history .history-site-footer-brand img { display: block; width: min(58vw, 980px); max-width: 100%; height: auto; }
+.aquinas-history .history-site-footer-columns, .aquinas-history .history-site-footer-bottom { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .65fr) minmax(0, .65fr); column-gap: clamp(3rem, 9vw, 10rem); }
+.aquinas-history .history-site-footer-columns { row-gap: 3rem; margin-bottom: 3rem; }
+.aquinas-history .history-site-footer-section h2, .aquinas-history .history-site-footer-acknowledgement h2 { margin: 0 0 1.5rem; color: var(--history-red); font-family: "Aquinas DM", "DM Sans", Arial, sans-serif; font-size: clamp(1.2rem, 1.1rem + .5vw, 1.4rem); font-weight: 700; line-height: 1.1; }
+.aquinas-history .history-site-footer-section { font-size: clamp(1rem, .95rem + .3vw, 1.125rem); line-height: 1.3; }
+.aquinas-history .history-site-footer-contact { display: grid; gap: 1rem; }
+.aquinas-history .history-site-footer-section ul { margin: 0; list-style: none; padding: 0; }
+.aquinas-history .history-site-footer a { color: inherit; text-decoration: none; }
+.aquinas-history .history-site-footer a:is(:hover, :focus-visible) { color: #fff; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+.aquinas-history .history-site-footer-divider { width: 100%; height: 1px; margin-bottom: 2rem; background: var(--history-red); }
+.aquinas-history .history-site-footer-acknowledgement { margin-bottom: 2rem; }
+.aquinas-history .history-site-footer-acknowledgement p { font-size: clamp(1rem, .95rem + .3vw, 1.125rem); font-style: normal; line-height: 1.35; }
+.aquinas-history .history-site-footer-bottom { font-size: clamp(1rem, .95rem + .3vw, 1.125rem); line-height: 1.2; }
+@media (max-width: 64rem) {
+  .aquinas-history .history-site-footer { padding-inline: 1rem; }
+  .aquinas-history .history-site-footer-brand img { width: min(78vw, 760px); }
+  .aquinas-history .history-site-footer-columns, .aquinas-history .history-site-footer-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; }
+  .aquinas-history .history-site-footer-contact, .aquinas-history .history-site-footer-bottom p:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 40rem) {
+  .aquinas-history .history-site-footer { padding-inline: .75rem; }
+  .aquinas-history .history-site-footer-brand img { width: 100%; }
+  .aquinas-history .history-site-footer-columns, .aquinas-history .history-site-footer-bottom { grid-template-columns: 1fr; }
+  .aquinas-history .history-site-footer-columns { row-gap: 2rem; }
+  .aquinas-history .history-site-footer-section h2, .aquinas-history .history-site-footer-acknowledgement h2 { margin-bottom: 1rem; }
+  .aquinas-history .history-site-footer-bottom { row-gap: .75rem; }
+}
+/* Native modal dialog; its opening and closing transforms live in ApologyModal. */
+.aquinas-history .history-apology { --history-apology-scale: 1.4; position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 24px; border: 0; color: var(--history-paper); background: transparent; overflow: hidden; }
+.aquinas-history .history-apology[open] { display: grid; place-items: center; }
+.aquinas-history .history-apology::backdrop { background: transparent; }
+.aquinas-history .history-apology-backdrop { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, #ef3e3326, transparent 70%), #000b; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.aquinas-history .history-apology-card { position: relative; width: min(calc(538px * var(--history-apology-scale)), 100%); max-height: calc(100svh - 48px); overflow: auto; overscroll-behavior: contain; background: var(--history-ink); border-radius: calc(2px * var(--history-apology-scale)); box-shadow: 0 28px 100px #0006; transform-origin: center; }
+.aquinas-history .history-apology-content { display: flex; flex-direction: column; align-items: flex-start; gap: calc(23px * var(--history-apology-scale)); padding: calc(48px * var(--history-apology-scale)); }
+.aquinas-history .history-apology-copy { display: flex; flex-direction: column; gap: calc(24px * var(--history-apology-scale)); width: 100%; }
+.aquinas-history .history-apology h2 { margin: 0; width: 100%; color: var(--history-red); font-family: "Aquinas Ogg", Georgia, serif; font-size: calc(48px * var(--history-apology-scale)); line-height: calc(64px * var(--history-apology-scale)); font-weight: 500; font-style: normal; }
+.aquinas-history .history-apology h2:focus { outline: none; }
+.aquinas-history .history-apology-text { padding-bottom: calc(18px * var(--history-apology-scale)); font-size: calc(14px * var(--history-apology-scale)); line-height: calc(18px * var(--history-apology-scale)); font-variation-settings: "opsz" 14; }
+.aquinas-history .history-apology-text p + p { margin-top: calc(18px * var(--history-apology-scale)); }
+.aquinas-history .history-apology-return { width: calc(163px * var(--history-apology-scale)); height: calc(37px * var(--history-apology-scale)); min-height: calc(37px * var(--history-apology-scale)); padding: calc(8px * var(--history-apology-scale)) calc(16px * var(--history-apology-scale)); border-width: calc(1.5px * var(--history-apology-scale)); font-size: calc(14px * var(--history-apology-scale)); line-height: calc(18px * var(--history-apology-scale)); white-space: nowrap; }
+.aquinas-history .history-skip-link { position: fixed; top: 12px; left: 12px; z-index: 100; color: var(--history-ink); background: var(--history-paper); padding: 12px 18px; font-size: 16px; transform: translateY(-200%); }
+.aquinas-history .history-skip-link:focus { transform: translateY(0); }
+.aquinas-history .history-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .aquinas-history *, .aquinas-history *::before, .aquinas-history *::after { transition: none !important; }
+}
+/* Native phone typography and actions; only the surrounding photo rings scale. */
+@media (max-width: 899px) {
+  .aquinas-history { --history-viewport: 100dvh; }
+  .aquinas-history .history-hero { min-height: 500px; }
+  .aquinas-history .history-hero-stage { inset: 0; width: 100%; height: 100%; transform: none; }
+  .aquinas-history .history-orbit { left: calc(50% - 640px); top: calc(50% - 416px); transform: scale(max(.66, var(--design-scale))); transform-origin: 640px 416px; }
+  .aquinas-history .history-hero-content { top: 50%; left: 50%; width: calc(100% - 48px); max-width: 540px; }
+  .aquinas-history .history-crest { width: 106.4px; height: 106.4px; }
+  .aquinas-history .history-hero h1 { margin-block: 12px; font-size: clamp(48px, 14vw, 68px); line-height: 1.25; }
+  .aquinas-history .history-hero-content p { max-width: 360px; font-size: 16px; line-height: 24px; }
+  .aquinas-history .history-hero-actions { margin-top: 32px; }
+  .aquinas-history .history-start-journey { min-width: var(--history-continue-width); min-height: var(--history-continue-height); padding: 12px 20px; font-size: var(--history-continue-font-size); line-height: 1.3125; }
+  .aquinas-history .history-hero-apology { top: max(20px, env(safe-area-inset-top)); right: 20px; bottom: auto; width: auto; height: 33px; min-height: 33px; padding: 7.5px 10.5px; border-width: .75px; font-size: 10.5px; transform: none; }
+  .aquinas-history .history-scroll-desktop { display: none; }
+  .aquinas-history .history-scroll-mobile { display: inline; }
+  .aquinas-history .history-scroll-continue { min-height: 44px; }
+  .aquinas-history .history-intro-panel { display: grid; place-items: center; min-height: 440px; padding: 48px 24px; }
+  .aquinas-history .history-intro-stage { position: relative; width: auto; height: auto; top: auto; left: auto; transform: none; }
+  .aquinas-history .history-intro p { position: relative; width: auto; max-width: 540px; left: auto; top: auto; transform: none; font-size: clamp(24px, 4.5vw, 38px); line-height: 1.3; }
+  .aquinas-history .history-timeline { height: auto; min-height: 900px; overflow: visible; }
+  .aquinas-history .history-timeline-stage { position: relative; width: auto; height: auto; left: auto; top: auto; transform: none; padding: 40px 24px 80px; display: grid; gap: 28px; }
+  .aquinas-history .history-year { position: relative; top: auto; left: auto; width: auto; height: 100px; font-size: 110px; }
+  .aquinas-history .history-year-range { font-size: clamp(40px, 17.5vw, 60px); }
+  .aquinas-history .history-date-rail { position: relative; top: auto; left: auto; width: 100%; height: 48px; display: flex; flex-direction: row; flex-wrap: nowrap; gap: 8px; grid-row: 2; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; touch-action: pan-x; scrollbar-width: none; }
+  .aquinas-history .history-date-rail::-webkit-scrollbar { display: none; }
+  .aquinas-history .history-date { width: auto; flex: 0 0 auto; height: 44px; min-width: 48px; padding: 8px; font-size: 12px; justify-content: center; }
+  .aquinas-history .history-date.is-current { font-size: 14px; }
+  .aquinas-history .history-date-tick, .aquinas-history .history-date::after { display: none; }
+  .aquinas-history .history-date.is-current { border-bottom: 2px solid var(--history-red); }
+  .aquinas-history .history-entry { position: relative; top: auto; left: auto; width: 100%; min-height: 340px; }
+  .aquinas-history .history-entry h2 { font-size: clamp(28px, 5vw, 44px); }
+  .aquinas-history .history-entry-reading { margin-top: 24px; }
+  .aquinas-history .history-entry-copy { max-height: none; }
+  .aquinas-history .history-timeline-photo { position: relative; top: auto; left: auto; width: 100%; }
+  .aquinas-history .history-timeline-photo > img { width: 100%; height: auto; aspect-ratio: 580 / 360; }
+  .aquinas-history .history-photo-portrait > img { width: min(100%, 360px); height: auto; aspect-ratio: auto; }
+  .aquinas-history .history-timeline-controls { position: relative; left: auto; right: auto; bottom: auto; }
+  .aquinas-history .history-step-buttons { width: 100%; justify-content: space-between; font-size: 14px; }
+  .aquinas-history .history-step-buttons button { width: 48px; height: 44px; }
+  .aquinas-history .history-end { --footer-action-scale: .75; min-height: 300px; padding: 80px 24px; }
+  .aquinas-history .history-end h2 { width: 100%; font-size: clamp(38px, 8vw, 48px); line-height: 1.3; }
+  .aquinas-history .history-end-actions { flex-wrap: wrap; gap: 16px; }
+  .aquinas-history .history-end .history-button { width: auto; height: auto; min-width: 120px; min-height: 48px; padding: 12px 18px; border-width: 1px; font-size: 16px; }
+  .aquinas-history .history-site-footer-section a { display: inline-flex; align-items: center; min-height: 44px; }
+  .aquinas-history .history-apology { --history-apology-scale: 1; padding: 16px; }
+  .aquinas-history .history-apology-card { max-height: calc(100svh - 32px); }
+  .aquinas-history .history-apology-content { padding: 48px 28px 32px; }
+  .aquinas-history .history-apology-text { font-size: 16px; line-height: 23px; }
+  .aquinas-history .history-apology-return { width: auto; height: auto; min-height: 48px; padding: 12px 16px; font-size: 16px; }
+}
+/* Portrait phones keep one complete year on screen. Long copy scrolls in its
+   own reading area before the next swipe advances the timeline. */
+@media (max-width: 899px) and (min-height: 500px) and (prefers-reduced-motion: no-preference) {
+  .aquinas-history .history-opening .history-hero { min-height: 0; }
+  .aquinas-history .history-timeline { height: var(--history-viewport); min-height: 0; overflow: clip; }
+  .aquinas-history .history-timeline-stage { position: absolute; inset: 0; width: min(100%, 680px); height: 100%; margin-inline: auto; padding: 24px 20px max(16px, env(safe-area-inset-bottom)); grid-template-rows: 88px minmax(120px, 25svh) minmax(0, 1fr) 48px 44px; gap: 12px; }
+  .aquinas-history .history-year { grid-row: 1; height: auto; font-size: 96px; }
+  .aquinas-history .history-year-range { font-size: clamp(40px, 10vw, 72px); letter-spacing: calc(.03em - 2px); }
+  .aquinas-history .history-timeline-photo { grid-row: 2; display: flex; flex-direction: column; align-items: center; min-height: 0; height: 100%; }
+  .aquinas-history .history-timeline-photo > img { flex: 1; min-height: 0; width: 100%; height: 0; aspect-ratio: auto; }
+  .aquinas-history .history-photo-portrait > img { width: auto; max-width: 100%; object-fit: contain; }
+  .aquinas-history .history-photo figcaption { flex: 0 0 auto; max-width: 100%; padding-inline: 10px; font-size: 11px; line-height: 15px; }
+  .aquinas-history .history-timeline-photo .history-model-viewer { flex: 1; min-height: 0; height: 0; }
+  .aquinas-history .history-entry { grid-row: 3; display: flex; flex-direction: column; min-height: 0; }
+  .aquinas-history .history-entry h2 { flex: 0 0 auto; font-size: clamp(26px, 4.5vw, 36px); line-height: 1.2; }
+  .aquinas-history .history-entry-reading { flex: 1; min-height: 0; margin-top: 16px; }
+  .aquinas-history .history-entry-copy { height: 100%; font-size: 16px; line-height: 22px; }
+  .aquinas-history .history-entry-copy p + p { margin-top: 16px; }
+  .aquinas-history .history-date-rail { grid-row: 4; }
+  .aquinas-history .history-timeline-controls { grid-row: 5; }
+}
+@media (max-width: 899px) and (min-height: 500px) and (max-height: 700px) and (prefers-reduced-motion: no-preference) {
+  .aquinas-history .history-timeline-stage { padding: 16px 16px max(12px, env(safe-area-inset-bottom)); grid-template-rows: 64px minmax(100px, 22svh) minmax(0, 1fr) 48px 44px; gap: 8px; }
+  .aquinas-history .history-year { font-size: 72px; }
+  .aquinas-history .history-entry h2 { font-size: 26px; }
+  .aquinas-history .history-entry-reading { margin-top: 12px; }
+  .aquinas-history .history-crest { width: 85.12px; height: 85.12px; }
+  .aquinas-history .history-hero-actions { margin-top: 24px; }
+}
+/* Landscape keeps readable sections in normal flow, with a compact centred
+   hero and cue rather than cropping them into a short fixed pin. */
+@media (max-width: 899px) and (max-height: 499px) {
+  .aquinas-history { --history-continue-height: 44px; }
+  .aquinas-history .history-hero { min-height: 100dvh; }
+  .aquinas-history .history-crest { width: 63.84px; height: 63.84px; }
+  .aquinas-history .history-hero h1 { margin-block: 8px; font-size: 44px; }
+  .aquinas-history .history-hero-content p { max-width: 540px; line-height: 22px; }
+  .aquinas-history .history-hero-actions { margin-top: 16px; }
+  .aquinas-history .history-intro-panel { min-height: 100dvh; padding: 32px 24px; }
+  .aquinas-history .history-intro p { font-size: clamp(24px, 3.6vw, 30px); }
+}

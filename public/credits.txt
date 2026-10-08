@@ -1,0 +1,69 @@
+Aquinas History — source-review credits
+
+This source-review copy does not grant a blanket reuse license for project code,
+supplied artwork, history copy, photographs, logos or models. Rights remain with
+their respective holders. See NOTICE.md and THIRD_PARTY.md in the repository.
+
+Archive photographs, crest, history copy and introduction/closing layouts come
+from supplied Aquinas design materials. The secondary footer and wordmark come
+from the Aquinas website. Runtime cross and CBC Perth assets were exported from
+supplied model scenes. Their inclusion does not relicense the supplied material.
+
+Rolling year counter adapted from React Bits Counter, copyright (c) 2026 David Haz.
+Source: https://reactbits.dev/components/counter
+MIT + Commons Clause: licenses/react-bits.txt. This is not plain MIT.
+
+Continuous background adapted from Componentry Spectral Ribbon,
+copyright (c) 2026 Harsh Jadhav, MIT: licenses/componentry.txt.
+Source: https://componentry.dev/docs/components/spectral-ribbon
+Registry source retrieved 7 October 2026: https://componentry.dev/r/spectral-ribbon.json
+Local integration adds Aquinas colours, continuous scroll-relative geometry,
+visibility-aware rendering, reduced motion and an SVG fallback.
+
+Three.js, copyright (c) 2010-2026 three.js authors, MIT: licenses/three.txt.
+The bundled Draco decoder retains Apache License 2.0: licenses/draco.txt.
+DM Sans, copyright 2014 The DM Sans Project Authors, SIL OFL 1.1:
+fonts/DM-Sans-OFL.txt. Ogg binaries are excluded; upright Georgia is the fallback.
+
+Nano Nagle is a photo-referenced approximation generated with TripoSR,
+copyright (c) 2024 Tripo AI & Stability AI, MIT: licenses/triposr.txt.
+Source: https://github.com/VAST-AI-Research/TripoSR
+An image-generation tool created the isolated reference from supplied statue
+photographs and Presentation Sisters England's public detail image:
+https://www.pbvmengland.co.uk/meet-nano-nagle
+Photographic frontal detail was sampled onto an inferred Gaussian surface.
+This is not an authentic scan or aligned multiview capture. The application
+locks its frontal view. The renderer is original; reconstruction weights,
+Python ML dependencies and source-reference images are not included.
+
+Original local implementations inspired by public reference behaviours:
+
+Apology dialog — React Bits Pro Modal Cards
+https://pro.reactbits.dev/docs/components/modal-cards
+Start Your Journey outline — Originkit Neon Glow Button
+https://www.originkit.dev/?cat=button
+Metallic continue pill — @johuniq's Liquid Metal Button
+https://21st.dev/@johuniq/components/liquid-metal-button
+3D interactions — React Bits Model Viewer
+https://reactbits.dev/components/model-viewer
+Pointer lens — React Bits Fluid Glass
+https://reactbits.dev/components/fluid-glass
+Hero photograph particles — React Bits Pro Particle Image
+https://pro.reactbits.dev/docs/components/particle-image
+Introduction words and phrase highlights — React Bits Pro
+https://pro.reactbits.dev/docs/components/staggered-text
+https://pro.reactbits.dev/docs/components/blur-highlight
+Crest zoom — Telescope
+https://telescope.fyi/
+
+No gated Pro component source, Telescope assets or liquid-metal component source
+was copied. These treatments use local CSS, GSAP, Lenis, Motion, Canvas or DOM
+implementations as described in THIRD_PARTY.md. Installed npm dependencies
+retain their own license files.
+
+Superseded design references retained for provenance:
+Skiper UI #19: https://skiper-ui.com/v1/skiper19
+Skiper UI's free version permits personal and commercial use and modification with attribution.
+Skiper UI #72: https://skiper-ui.com/v1/skiper72
+React Bits Web Threads: https://reactbits.dev/backgrounds/web-threads
+Those earlier treatments are not included in this source snapshot.

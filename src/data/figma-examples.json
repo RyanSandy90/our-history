@@ -1,0 +1,74 @@
+{
+  "examples": [
+    {
+      "date": "1762",
+      "imageOverride": null,
+      "transparent": false,
+      "presentation": "photo"
+    },
+    {
+      "date": "1779",
+      "imageOverride": {
+        "src": "/figma/3d-celtic-cross.png",
+        "alt": "Celtic cross",
+        "width": 1600,
+        "height": 2400,
+        "sourceLabel": "Celtic Cross"
+      },
+      "transparent": true,
+      "presentation": "unframed-object",
+      "caption": "1779 Celtic Cross"
+    },
+    {
+      "date": "1789",
+      "imageOverride": {
+        "src": "/figma/3d-celtic-cross.png",
+        "alt": "Celtic cross",
+        "width": 1600,
+        "height": 2400,
+        "sourceLabel": "Celtic Cross"
+      },
+      "transparent": true,
+      "presentation": "unframed-object",
+      "caption": "1789 Celtic Cross"
+    },
+    {
+      "date": "1808",
+      "imageOverride": {
+        "src": "/models/nano-nagle-poster.png",
+        "alt": "Bronze reconstruction of Nano Nagle carrying a lantern",
+        "width": 1024,
+        "height": 1536,
+        "sourceLabel": "Nano Nagle"
+      },
+      "transparent": true,
+      "presentation": "unframed-object",
+      "caption": "1808 Nano Nagle"
+    },
+    {
+      "date": "1894",
+      "imageOverride": {
+        "src": "/figma/3d-cbc-perth-1894.png",
+        "alt": "3D reconstruction of Christian Brothers\u2019 College Perth",
+        "width": 1400,
+        "height": 1100,
+        "sourceLabel": "CBC Perth"
+      },
+      "transparent": true,
+      "presentation": "unframed-object",
+      "caption": "1894 CBC Perth"
+    },
+    {
+      "date": "1937",
+      "imageOverride": {
+        "src": "/history/1937.webp",
+        "alt": "Laying of the foundation stone at Aquinas College, 1937",
+        "width": 1462,
+        "height": 1076,
+        "sourceLabel": "Foundation Stone Ceremony"
+      },
+      "transparent": false,
+      "presentation": "photo"
+    }
+  ]
+}
