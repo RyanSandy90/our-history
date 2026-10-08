@@ -109,7 +109,7 @@ export default function ApologyModal({ opener, onClose }: { opener: HTMLElement;
           <h2 id="history-apology-title" tabIndex={-1}>Acknowledging<br />Our History</h2>
           <div id="history-apology-description" className="history-apology-text">{paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>
         </div>
-        <button type="button" className="history-button history-apology-return" onClick={() => requestClose.current()}>Return to Our Story</button>
+        <button type="button" className="history-button history-apology-return" onClick={() => requestClose.current()}>Return to Our History</button>
       </div>
     </div>
   </dialog>;

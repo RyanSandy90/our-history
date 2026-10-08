@@ -90,12 +90,12 @@ export default function HistoryPreloader({ assetBase, root, revealing, onReveal,
     return () => controls.stop();
   }, [revealing, reduced, curtain, opacity, onComplete]);
 
-  return <motion.div className="history-preloader" role="region" aria-label="Opening Our Story"
+  return <motion.div className="history-preloader" role="region" aria-label="Opening Our History"
     data-phase={revealing ? "revealing" : settled ? "settled" : fontsReady ? "counting" : "preparing"}
     data-lenis-prevent style={{ clipPath, opacity }}>
-    <p className="history-sr-only" role="status">{revealing ? "Our Story is ready." : "Loading Our Story."}</p>
+    <p className="history-sr-only" role="status">{revealing ? "Our History is ready." : "Loading Our History."}</p>
     <motion.div className="history-preloader-centre" initial={false} animate={{ opacity: fontsReady ? 1 : 0, y: revealing && !reduced ? -56 : 0 }} transition={{ duration: revealing ? .7 : .25 }}>
-      <p className="history-preloader-label">Aquinas College <span>Our Story</span></p>
+      <p className="history-preloader-label">Aquinas College <span>Our History</span></p>
       <YearCounter value={year} reduced={!!reduced} />
       <p className="history-preloader-range">1762 <span aria-hidden="true" /> 2027</p>
     </motion.div>

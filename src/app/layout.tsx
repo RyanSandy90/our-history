@@ -3,7 +3,7 @@ import "./shell.css";
 import "../history/history.css";
 
 export const metadata: Metadata = {
-  title: "Our Story | Aquinas College",
+  title: "Our History | Aquinas College",
   description: "The people, places and moments that have shaped Aquinas College.",
   robots: { index: false, follow: false },
   icons: { icon: "/figma/crest.png" },

@@ -118,7 +118,7 @@ test("reduced motion keeps the apology accessible and restores keyboard focus", 
   await expect(page.locator(".history-apology-card")).toHaveCSS("transform", "none");
   await expect(modal.getByRole("heading")).toBeFocused();
   await page.keyboard.press("Tab");
-  await expect(modal.getByRole("button", { name: "Return to Our Story" })).toBeFocused();
+  await expect(modal.getByRole("button", { name: "Return to Our History" })).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(modal).toHaveCount(0);
   await expect(trigger).toBeFocused();

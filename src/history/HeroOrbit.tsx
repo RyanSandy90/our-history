@@ -130,7 +130,7 @@ export default function HeroOrbit({ assetBase, revealed, onJourney, onRevealComp
         </div>
         <div className="history-hero-content" ref={content}>
           <img className="history-crest" ref={crest} src={assetUrl(assetBase, "figma/crest.png")} width="98" height="98" alt="Aquinas College" fetchPriority="high" />
-          <h1 id="history-hero-title">Our <span className="history-story-word">Story</span></h1>
+          <h1 id="history-hero-title">Our <span className="history-story-word">History</span></h1>
           <HeroTagline revealed={revealed} onRevealComplete={onRevealComplete} />
           <div className="history-hero-actions">
             <button type="button" className="history-button history-button-neon history-start-journey" data-neon-ready={revealed} onClick={onJourney}>

@@ -1,10 +1,13 @@
 # Our History — Aquinas Next.js source review
 
-The Next.js and React implementation of Aquinas College's interactive Our Story
+The Next.js and React implementation of Aquinas College's interactive Our History
 experience, published for source review. It has one page route (`/`) and runs
 locally without accounts, API keys, a database or environment configuration.
 
-[View the visual reference](https://aquinasweb.wpenginepowered.com/our-story/).
+[View the visual reference](https://aquinasweb.wpenginepowered.com/our-history-review/).
+The standalone review address is `/our-history-review/`; the earlier `/our-story/`
+address redirects there, preserving query strings and section anchors. The
+Next.js development preview continues to use its single `/` route.
 This repository includes the runtime photographs, crest, wordmark and 3D assets
 needed to review the experience. Ogg font binaries are excluded: serif text uses
 the upright Georgia fallback, so typography and wrapping differ from the reference.

@@ -53,7 +53,8 @@ all graphics drivers. Generated traces and screenshots are local diagnostics.
 
 ## Snapshot validation
 
-Validated locally on 8 October 2026 with Node 24.13.1 and npm 11.8.0:
+The initial public snapshot was validated locally on 8 October 2026 with Node
+24.13.1 and npm 11.8.0, before the hero was renamed to Our History:
 
 - Fresh dependency installation with lifecycle scripts disabled.
 - Type checking and the production build passed.
@@ -61,14 +62,21 @@ Validated locally on 8 October 2026 with Node 24.13.1 and npm 11.8.0:
 - The headed 2× hero pixel regression passed after three return journeys.
 - The dependency audit reported no known vulnerabilities at the time of review.
 
-These results describe this snapshot. Automated GitHub Actions checks are not
+These results describe that prior snapshot; they do not verify a subsequent
+deployment or URL change. Automated GitHub Actions checks are not
 enabled yet, and the audit result can change as new advisories are published.
+
+After the Our History rename on 8 October 2026, this repository's type checking
+and production build passed again. The separate hosted reference at
+`/our-history-review/` passed its desktop journey and all three model checks;
+its heading was also checked at 320, 390 and 1280px. The old `/our-story/`
+address redirects to that separate review page.
 
 ## Manual review
 
 1. Open `/` at 1280 × 832. Let the preloader finish, then compare the photo orbits,
    star zoom and three introduction stops with the
-   [visual reference](https://aquinasweb.wpenginepowered.com/our-story/).
+   [visual reference](https://aquinasweb.wpenginepowered.com/our-history-review/).
    The public build uses Georgia where that reference uses Ogg.
 2. Advance with wheel, keyboard and the continue pill. Reverse back to the hero
    several times and check photographs remain fully painted and orbiting.
