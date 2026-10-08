@@ -1,4 +1,4 @@
-# Aquinas History — Next.js source review
+# Our History — Aquinas Next.js source review
 
 The Next.js and React implementation of Aquinas College's interactive Our Story
 experience, published for source review. It has one page route (`/`) and runs
@@ -14,8 +14,8 @@ the upright Georgia fallback, so typography and wrapping differ from the referen
 Use Node.js 24 (`.nvmrc`) and npm 11.8.0. The declared Node.js minimum is 22.12.0.
 
 ```sh
-git clone https://github.com/RyanSandy90/aquinas-history-nextjs.git
-cd aquinas-history-nextjs
+git clone https://github.com/RyanSandy90/our-history.git
+cd our-history
 nvm use
 npm ci
 npm run dev

@@ -1,5 +1,5 @@
 {
-  "name": "aquinas-history-nextjs",
+  "name": "our-history",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -28,7 +28,7 @@
     "@types/three": "0.186.0",
     "typescript": "^5.9.0"
   },
-  "description": "Next.js and React source review of the Aquinas Our Story experience",
+  "description": "Our History — Next.js and React source review for Aquinas College",
   "engines": {
     "node": ">=22.12.0"
   },
